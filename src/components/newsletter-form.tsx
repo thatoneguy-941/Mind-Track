@@ -59,7 +59,7 @@ export function NewsletterForm() {
       
       {isSuccess ? (
         <div className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-100 p-6 rounded-xl text-center border border-green-200 dark:border-green-800">
-          Thanks for subscribing! We'll be in touch soon.
+          Thanks for subscribing! We&apos;ll be in touch soon.
         </div>
       ) : (
         <Form {...form}>

@@ -37,7 +37,7 @@ export function ResourcesSection() {
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Mental Health Resources</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We've compiled helpful resources to support your mental health journey.
+            We&apos;ve compiled helpful resources to support your mental health journey.
           </p>
         </div>
         

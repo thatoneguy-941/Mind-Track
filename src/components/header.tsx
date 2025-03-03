@@ -1,52 +1,45 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { MobileNav } from "@/components/ui/mobile-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { SmoothScrollLink } from "@/components/smooth-scroll-link";
+"use client";
 
-const navigationLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#resources", label: "Resources" },
-];
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Brain } from "lucide-react";
+import { MobileNav } from "./mobile-nav";
 
 export function Header() {
   return (
-    <header className="border-b sticky top-0 bg-background/95 backdrop-blur-sm z-50">
-      <div className="container mx-auto flex justify-between items-center py-6 px-6">
-        <div className="flex items-center gap-3 bg-primary/5 px-5 py-3 rounded-xl">
-          <Image 
-            src="/logo.svg" 
-            alt="MindTrack Logo" 
-            width={32} 
-            height={32}
-            className="dark:invert"
-          />
-          <span className="font-bold text-xl">MindTrack</span>
-        </div>
-        
-        <nav className="hidden md:flex gap-8">
-          {navigationLinks.map((link) => (
-            <SmoothScrollLink 
-              key={link.href} 
-              href={link.href} 
-              className="hover:text-primary transition-colors font-medium"
-            >
-              {link.label}
-            </SmoothScrollLink>
-          ))}
-        </nav>
-        
-        <div className="hidden md:flex items-center gap-5">
-          <ThemeToggle />
-          <Button variant="outline" className="rounded-xl px-5">Log In</Button>
-          <Button className="rounded-xl px-5">Sign Up</Button>
-        </div>
-        
-        <div className="flex items-center md:hidden">
-          <ThemeToggle />
-          <MobileNav links={navigationLinks} />
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-purple-100">
+      <div className="container px-4 mx-auto">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="p-1.5 bg-primary rounded-lg rotate-45">
+              <div className="-rotate-45">
+                <Brain className="w-5 h-5 text-white" />
+              </div>
+            </div>
+            <span className="text-xl font-bold">MindTrack</span>
+          </Link>
+
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="#features" className="text-gray-600 hover:text-primary transition-colors">
+              Features
+            </Link>
+            <Link href="#pricing" className="text-gray-600 hover:text-primary transition-colors">
+              Pricing
+            </Link>
+            <Link href="#about" className="text-gray-600 hover:text-primary transition-colors">
+              About
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" className="hidden md:inline-flex hover:text-primary">
+              Log in
+            </Button>
+            <Button className="bg-primary text-white hover:bg-primary/90">
+              Get Started
+            </Button>
+            <MobileNav />
+          </div>
         </div>
       </div>
     </header>

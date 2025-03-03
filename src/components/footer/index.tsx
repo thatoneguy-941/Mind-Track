@@ -2,6 +2,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Twitter, Facebook, Instagram } from "lucide-react"
 
+const socialLinks = [
+  { name: "Twitter", href: "#", icon: Twitter },
+  { name: "Facebook", href: "#", icon: Facebook },
+  { name: "Instagram", href: "#", icon: Instagram }
+]
+
 export function Footer() {
   return (
     <footer className="relative bg-white/50 backdrop-blur-sm border-t border-purple-100">
@@ -19,15 +25,15 @@ export function Footer() {
               Your companion for mental wellness tracking and personal growth
             </p>
             <div className="flex space-x-5">
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <Facebook className="w-5 h-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <Instagram className="w-5 h-5" />
-              </Link>
+              {socialLinks.map((social) => (
+                <Link 
+                  key={social.name}
+                  href={social.href} 
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  <social.icon className="w-5 h-5" />
+                </Link>
+              ))}
             </div>
           </div>
 

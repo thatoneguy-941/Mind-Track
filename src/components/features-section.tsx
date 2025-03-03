@@ -1,55 +1,59 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Activity, LineChart } from "lucide-react";
+"use client";
 
-interface Feature {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-const features: Feature[] = [
-  {
-    title: "Mood Tracking",
-    description: "Log your daily moods and emotions to identify patterns and triggers.",
-    icon: <Brain className="h-8 w-8 text-primary" />,
-  },
-  {
-    title: "Habit Building",
-    description: "Create and maintain positive habits that contribute to your mental wellbeing.",
-    icon: <Activity className="h-8 w-8 text-primary" />,
-  },
-  {
-    title: "Insights & Analytics",
-    description: "Gain valuable insights through personalized analytics and progress reports.",
-    icon: <LineChart className="h-8 w-8 text-primary" />,
-  },
-];
+import { motion } from "framer-motion";
+import React from 'react';
+import { PricingSection } from './pricing-section';
+import BrainSimple from './BrainSimple';
+import LineChart from './LineChart';
+import Calendar from "./Calendar";
 
 export function FeaturesSection() {
+  const features = [
+    {
+      icon: BrainSimple,
+      title: "Mood Tracking",
+      description: "Monitor your daily moods and emotions with our intuitive tracking system"
+    },
+    {
+      icon: LineChart,
+      title: "Progress Analytics",
+      description: "Visualize your mental health journey with detailed analytics and insights"
+    },
+    {
+      icon: Calendar,
+      title: "Habit Builder",
+      description: "Build and maintain positive habits with our structured guidance system"
+    }
+  ];
+
   return (
-    <section id="features" className="py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Features Designed for Your Wellbeing</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Tools and insights to help you understand and improve your mental health.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-10">
-          {features.map((feature) => (
-            <Card key={feature.title} className="rounded-xl overflow-hidden border-2 hover:border-primary/50 transition-colors">
-              <CardHeader className="pb-2 pt-6 px-6">
-                <div className="mb-5 p-3 bg-primary/10 inline-block rounded-xl">{feature.icon}</div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="px-6 pb-6">
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
+    <section className="py-32 relative">
+      <div className="container px-4 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group p-8 bg-white/50 rounded-2xl backdrop-blur-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 mb-6 bg-purple-100 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                {React.createElement(feature.icon, { className: "w-7 h-7" })}
+              </div>
+              <h3 className="mb-4 text-xl font-semibold group-hover:text-primary transition-colors">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">
+                {feature.description}
+              </p>
+            </motion.div>
           ))}
-        </div>
+        </div> 
+
+        <PricingSection />
       </div>
-    </section>
+    </section> 
   );
-} 
+}
